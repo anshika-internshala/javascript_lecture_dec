@@ -19,6 +19,10 @@ let scores = 20;
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".highscore");
 
+const number  = document.querySelector(".number");
+const body = document.querySelector("body");
+const resetButton = document.querySelector(".again");
+
 function checkGuessNumber() {
     let userValue = Number(guessElement.value);
     console.log("userValue", userValue);
@@ -30,6 +34,8 @@ function checkGuessNumber() {
     } else if (userValue === randomNumber) {
         messageText.textContent = "Correct Number";
         highScoreElement.textContent = scores;
+        number.textContent = randomNumber;
+        body.style.backgroundColor = "green";
     } else if (userValue < randomNumber) {
         scores--; // scores = scores -1;
         scoreElement.textContent = scores;
@@ -41,4 +47,39 @@ function checkGuessNumber() {
     } 
 
 }
+
+let reset = 0;
+resetButton.addEventListener('click', resetGame);
+
+function resetGame() {
+    //window.location.reload();
+    body.style.backgroundColor = "black";
+    scoreElement.textContent = 20;
+    highScoreElement.textContent = 0;
+    messageText.textContent = "Start guessing...";
+    number.textContent = "?";
+    guessElement.value = "";
+    randomNumber = Math.trunc(Math.random() * 20) + 1;
+    console.log("random number", randomNumber);
+}
+
+const newElement = document.createElement("div");
+newElement.textContent= "learning dom";
+const mainElement = document.querySelector("main");
+mainElement.appendChild(newElement);
+
+// const email =  document.getElementsByName("email");
+// const emailString = email.value;
+
+// const password =  document.getElementsByName("password");
+// const passwordString = email.value;
+
+// if (emailString === "admin@admin.com" && passwordString === "23456") {
+//     alert("Login Successful");
+// } else {
+//     alert ("incorect")
+// }
+
+
+
 
